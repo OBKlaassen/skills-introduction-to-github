@@ -454,6 +454,19 @@ export function getScheduleStats(weeklySchedule) {
   return stats;
 }
 
+// Named exports for direct imports
+export {
+  generateNextWeekSchedule,
+  updateProgressFromEvaluation,
+  generateWeektaak,
+  validateLessonMove,
+  initializeProgressTracker,
+  getScheduleStats,
+  findLessonById,
+  getAllLessonsFromMethod
+};
+
+// Default export for convenience
 export default {
   generateNextWeekSchedule,
   updateProgressFromEvaluation,
