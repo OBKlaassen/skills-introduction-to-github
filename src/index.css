@@ -5,16 +5,23 @@
 @layer base {
   body {
     @apply bg-gray-50 text-gray-900;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
   }
 }
 
 @layer components {
+  /* Buttons */
   .btn {
     @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
   }
 
   .btn-primary {
-    @apply bg-primary-600 text-white hover:bg-primary-700 active:bg-primary-800;
+    @apply bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800;
   }
 
   .btn-secondary {
@@ -29,20 +36,82 @@
     @apply bg-red-600 text-white hover:bg-red-700 active:bg-red-800;
   }
 
+  /* Cards */
   .card {
     @apply bg-white rounded-lg shadow-md p-6;
   }
 
+  /* Form elements - FIXED: Wider dropdowns */
   .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent outline-none;
+    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none;
+  }
+
+  select.input {
+    @apply min-w-[200px] px-3 py-2;
+  }
+
+  .schedule-select {
+    @apply w-full min-w-[180px] px-3 py-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 bg-white;
   }
 
   .label {
     @apply block text-sm font-medium text-gray-700 mb-1;
   }
 
+  /* Day color system - Nederlandse school rooster stijl */
+  .day-monday {
+    @apply bg-red-50 border-red-300;
+  }
+  .day-monday-header {
+    @apply bg-red-600 text-white;
+  }
+  .day-monday-light {
+    @apply bg-red-100;
+  }
+
+  .day-tuesday {
+    @apply bg-blue-50 border-blue-300;
+  }
+  .day-tuesday-header {
+    @apply bg-blue-600 text-white;
+  }
+  .day-tuesday-light {
+    @apply bg-blue-100;
+  }
+
+  .day-wednesday {
+    @apply bg-yellow-50 border-yellow-400;
+  }
+  .day-wednesday-header {
+    @apply bg-yellow-500 text-gray-900;
+  }
+  .day-wednesday-light {
+    @apply bg-yellow-100;
+  }
+
+  .day-thursday {
+    @apply bg-green-50 border-green-300;
+  }
+  .day-thursday-header {
+    @apply bg-green-600 text-white;
+  }
+  .day-thursday-light {
+    @apply bg-green-100;
+  }
+
+  .day-friday {
+    @apply bg-orange-50 border-orange-300;
+  }
+  .day-friday-header {
+    @apply bg-orange-500 text-white;
+  }
+  .day-friday-light {
+    @apply bg-orange-100;
+  }
+
+  /* Time slots */
   .time-slot {
-    @apply border-2 border-gray-300 rounded-lg p-3 transition-all duration-200;
+    @apply border-2 border-gray-200 rounded-lg p-3 transition-all duration-200 bg-white;
   }
 
   .time-slot-dragging {
@@ -50,19 +119,84 @@
   }
 
   .time-slot-over {
-    @apply border-primary-500 bg-primary-50;
+    @apply border-blue-500 bg-blue-50;
   }
 
+  /* Lesson cards */
   .lesson-card {
-    @apply bg-white border-2 border-blue-300 rounded-lg p-3 shadow-sm cursor-grab transition-all duration-200 hover:shadow-md;
+    @apply bg-white border-l-4 rounded-md p-3 shadow-sm cursor-grab transition-all duration-200 hover:shadow-md;
   }
 
   .lesson-card-backlog {
-    @apply border-orange-400 bg-orange-50;
+    @apply border-l-orange-500 bg-orange-50;
   }
 
   .lesson-card-completed {
-    @apply border-green-400 bg-green-50;
+    @apply border-l-green-500 bg-green-50;
+  }
+
+  /* Teacher badge */
+  .teacher-badge {
+    @apply inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium;
+  }
+
+  /* Subject badges */
+  .subject-badge {
+    @apply inline-block px-2 py-1 rounded text-xs font-medium;
+  }
+
+  .subject-rekenen {
+    @apply bg-purple-100 text-purple-800;
+  }
+
+  .subject-taal {
+    @apply bg-blue-100 text-blue-800;
+  }
+
+  .subject-spelling {
+    @apply bg-green-100 text-green-800;
+  }
+
+  .subject-lezen {
+    @apply bg-pink-100 text-pink-800;
+  }
+
+  .subject-gym {
+    @apply bg-red-100 text-red-800;
+  }
+
+  .subject-pauze {
+    @apply bg-gray-100 text-gray-600;
+  }
+
+  /* Schedule table */
+  .schedule-table {
+    @apply w-full border-collapse;
+  }
+
+  .schedule-table th {
+    @apply p-2 font-semibold text-sm;
+  }
+
+  .schedule-table td {
+    @apply p-2 border border-gray-200 text-sm;
+  }
+
+  /* Weektaak styling */
+  .weektaak-header {
+    @apply text-center font-bold text-2xl mb-4 text-gray-800;
+  }
+
+  .weektaak-day-column {
+    @apply border-2 rounded-lg p-4;
+  }
+
+  .weektaak-task-item {
+    @apply flex items-start gap-2 mb-2 pb-2 border-b border-gray-200;
+  }
+
+  .weektaak-checkbox {
+    @apply w-5 h-5 border-2 border-gray-400 rounded flex-shrink-0 mt-0.5;
   }
 }
 
