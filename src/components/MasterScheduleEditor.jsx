@@ -1,19 +1,25 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-
-const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-const DAY_NAMES = {
-  monday: 'Maandag',
-  tuesday: 'Dinsdag',
-  wednesday: 'Woensdag',
-  thursday: 'Donderdag',
-  friday: 'Vrijdag'
-}
+import {
+  DUTCH_SCHOOL_SUBJECTS,
+  DAYS,
+  getDayName,
+  getDayColorClass
+} from '../utils/dutchSchoolDefaults'
 
 function MasterScheduleEditor({ masterSchedule, onSave, onCancel }) {
   const [schedule, setSchedule] = useState(JSON.parse(JSON.stringify(masterSchedule)))
   const [currentWeek, setCurrentWeek] = useState('weekA')
   const [newSubject, setNewSubject] = useState('')
+
+  // Initialize teachers if not exists
+  const [teachers, setTeachers] = useState(masterSchedule.teachers || {
+    monday: '',
+    tuesday: '',
+    wednesday: '',
+    thursday: '',
+    friday: ''
+  })
 
   // Extract all unique subjects from current schedule
   const getAllSubjects = () => {
@@ -103,7 +109,11 @@ function MasterScheduleEditor({ masterSchedule, onSave, onCancel }) {
   }
 
   const handleSave = () => {
-    onSave(schedule)
+    const updatedSchedule = {
+      ...schedule,
+      teachers: teachers
+    }
+    onSave(updatedSchedule)
   }
 
   return (
@@ -175,12 +185,39 @@ function MasterScheduleEditor({ masterSchedule, onSave, onCancel }) {
           </div>
         </div>
 
+        {/* Teacher per dag */}
+        <div className="mb-6 p-4 bg-blue-50 rounded-lg">
+          <label className="label mb-3">Leerkracht per dag (duo-baan)</label>
+          <p className="text-sm text-gray-600 mb-4">
+            Bij een duo-baan kun je hier aangeven welke leerkracht op welke dag werkt.
+          </p>
+          <div className="grid grid-cols-5 gap-3">
+            {DAYS.map(day => (
+              <div key={day}>
+                <label className="label text-xs">{getDayName(day, true)}</label>
+                <input
+                  type="text"
+                  className="input text-sm py-1 px-2"
+                  value={teachers[day]}
+                  onChange={(e) => setTeachers({ ...teachers, [day]: e.target.value })}
+                  placeholder="bijv. Juf Anna"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Schedule grid */}
         <div className="space-y-6">
           {DAYS.map(day => (
-            <div key={day} className="border border-gray-200 rounded-lg p-4">
+            <div key={day} className={`border-2 rounded-lg p-4 day-${day}`}>
               <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-lg">{DAY_NAMES[day]}</h3>
+                <div className="flex items-center gap-3">
+                  <span className={`${getDayColorClass(day)} px-3 py-1 rounded-lg font-semibold`}>
+                    {getDayName(day, true)}
+                  </span>
+                  <h3 className="font-semibold text-lg">{getDayName(day)}</h3>
+                </div>
                 <button
                   onClick={() => handleAddTimeSlot(day)}
                   className="btn btn-primary text-sm"
@@ -209,7 +246,7 @@ function MasterScheduleEditor({ masterSchedule, onSave, onCancel }) {
                     <select
                       value={slot.subject}
                       onChange={(e) => handleUpdateTimeSlot(day, slot.id, 'subject', e.target.value)}
-                      className="input text-sm py-1 px-2 flex-1"
+                      className="schedule-select text-sm py-1 px-2 flex-1"
                     >
                       {subjects.map(subject => (
                         <option key={subject} value={subject}>{subject}</option>

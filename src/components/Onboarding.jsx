@@ -1,25 +1,13 @@
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
-
-const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-const DAY_NAMES = {
-  monday: 'Maandag',
-  tuesday: 'Dinsdag',
-  wednesday: 'Woensdag',
-  thursday: 'Donderdag',
-  friday: 'Vrijdag'
-}
-
-const DEFAULT_SUBJECTS = [
-  'Rekenen',
-  'Spelling',
-  'Technisch lezen',
-  'Begrijpend lezen',
-  'Schrijven',
-  'Gym',
-  'Pauze',
-  'Eten'
-]
+import {
+  DUTCH_SCHOOL_SUBJECTS,
+  DAYS,
+  DAY_INFO,
+  generateDefaultContinurooster,
+  getDayName,
+  getDayColorClass
+} from '../utils/dutchSchoolDefaults'
 
 function Onboarding({ teachingMethods, onComplete }) {
   const [step, setStep] = useState(1)
@@ -32,21 +20,24 @@ function Onboarding({ teachingMethods, onComplete }) {
     schoolYear: '2025-2026'
   })
 
-  // Step 2: Master schedule setup
+  // Step 2: Master schedule setup (met DEFAULTS!)
   const [cycleType, setCycleType] = useState('weekly')
-  const [subjects, setSubjects] = useState(DEFAULT_SUBJECTS)
+  const [subjects, setSubjects] = useState(DUTCH_SCHOOL_SUBJECTS)
   const [newSubject, setNewSubject] = useState('')
 
-  // Step 3: Time slots configuration
+  // Teacher per dag
+  const [teachers, setTeachers] = useState({
+    monday: '',
+    tuesday: '',
+    wednesday: '',
+    thursday: '',
+    friday: ''
+  })
+
+  // Step 3: Time slots configuration - START MET DEFAULTS!
   const [currentWeek, setCurrentWeek] = useState('weekA')
   const [schedules, setSchedules] = useState({
-    weekA: {
-      monday: { slots: [] },
-      tuesday: { slots: [] },
-      wednesday: { slots: [] },
-      thursday: { slots: [] },
-      friday: { slots: [] }
-    },
+    weekA: generateDefaultContinurooster(),
     weekB: {
       monday: { slots: [] },
       tuesday: { slots: [] },
@@ -125,6 +116,7 @@ function Onboarding({ teachingMethods, onComplete }) {
       id: uuidv4(),
       schoolYear: settings.schoolYear,
       cycleType: cycleType,
+      teachers: teachers, // Leerkracht per dag
       weeks: {
         weekA: schedules.weekA,
         ...(cycleType === 'biweekly' ? { weekB: schedules.weekB } : {})
@@ -282,6 +274,28 @@ function Onboarding({ teachingMethods, onComplete }) {
             </div>
           </div>
 
+          <div className="mb-6">
+            <label className="label mb-3">Leerkracht per dag (optioneel - voor duo-banen)</label>
+            <p className="text-sm text-gray-600 mb-4">
+              Bij een duo-baan kun je hier aangeven welke leerkracht op welke dag werkt.
+              Dit verschijnt op de weektaak.
+            </p>
+            <div className="grid grid-cols-5 gap-3">
+              {DAYS.map(day => (
+                <div key={day}>
+                  <label className="label text-xs">{getDayName(day, true)}</label>
+                  <input
+                    type="text"
+                    className="input text-sm py-1 px-2"
+                    value={teachers[day]}
+                    onChange={(e) => setTeachers({ ...teachers, [day]: e.target.value })}
+                    placeholder="bijv. Juf Anna"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
           <div>
             <label className="label">Vakken in je rooster</label>
             <div className="flex gap-2 mb-3">
@@ -366,12 +380,17 @@ function Onboarding({ teachingMethods, onComplete }) {
 
           <div className="space-y-6">
             {DAYS.map(day => (
-              <div key={day} className="border border-gray-200 rounded-lg p-4">
+              <div key={day} className={`border-2 rounded-lg p-4 day-${day}`}>
                 <div className="flex items-center justify-between mb-3">
-                  <h3 className="font-semibold text-lg">{DAY_NAMES[day]}</h3>
+                  <div className="flex items-center gap-3">
+                    <span className={`${getDayColorClass(day)} px-3 py-1 rounded-lg font-semibold`}>
+                      {getDayName(day, true)}
+                    </span>
+                    <h3 className="font-semibold text-lg">{getDayName(day)}</h3>
+                  </div>
                   <button
                     onClick={() => handleAddTimeSlot(day)}
-                    className="btn btn-primary btn-sm text-sm"
+                    className="btn btn-primary text-sm"
                   >
                     + Lesuur toevoegen
                   </button>
@@ -397,7 +416,7 @@ function Onboarding({ teachingMethods, onComplete }) {
                       <select
                         value={slot.subject}
                         onChange={(e) => handleUpdateTimeSlot(day, slot.id, 'subject', e.target.value)}
-                        className="input text-sm py-1 flex-1"
+                        className="schedule-select text-sm py-1 flex-1"
                       >
                         {subjects.map(subject => (
                           <option key={subject} value={subject}>{subject}</option>
