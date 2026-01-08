@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { format } from 'date-fns'
 import { nl } from 'date-fns/locale'
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 import {
   DndContext,
   DragOverlay,
@@ -18,15 +20,7 @@ import {
 } from '@dnd-kit/sortable'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-
-const DAYS = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday']
-const DAY_NAMES = {
-  monday: 'Maandag',
-  tuesday: 'Dinsdag',
-  wednesday: 'Woensdag',
-  thursday: 'Donderdag',
-  friday: 'Vrijdag'
-}
+import { DAYS, getDayName, getDayColorClass } from '../utils/dutchSchoolDefaults'
 
 // Sortable lesson card component
 function SortableLessonCard({ lesson, onToggleComplete, onRemove }) {
@@ -98,6 +92,7 @@ function WeeklyScheduleView({
 }) {
   const [schedule, setSchedule] = useState(weeklySchedule)
   const [activeId, setActiveId] = useState(null)
+  const [isPrintingTeacherSchedule, setIsPrintingTeacherSchedule] = useState(false)
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -153,6 +148,42 @@ function WeeklyScheduleView({
   const handleSave = () => {
     onUpdate(schedule)
     alert('Rooster opgeslagen!')
+  }
+
+  const handlePrintTeacherSchedule = async () => {
+    setIsPrintingTeacherSchedule(true)
+
+    try {
+      // Wait a bit for the DOM to update
+      await new Promise(resolve => setTimeout(resolve, 100))
+
+      const element = document.getElementById('teacher-schedule-printable')
+      if (!element) return
+
+      const canvas = await html2canvas(element, {
+        scale: 2,
+        backgroundColor: '#ffffff',
+        logging: false,
+      })
+
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF('l', 'mm', 'a4') // Landscape
+
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = pdf.internal.pageSize.getHeight()
+
+      const imgWidth = pdfWidth - 20
+      const imgHeight = (canvas.height * imgWidth) / canvas.width
+
+      pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight)
+
+      pdf.save(`Leerkracht_Rooster_Week${schedule.weekNumber}.pdf`)
+    } catch (error) {
+      console.error('Error generating PDF:', error)
+      alert('Er is een fout opgetreden bij het genereren van de PDF')
+    } finally {
+      setIsPrintingTeacherSchedule(false)
+    }
   }
 
   const handleDragStart = (event) => {
@@ -214,6 +245,13 @@ function WeeklyScheduleView({
           <div className="flex gap-2">
             <button onClick={onBack} className="btn btn-secondary">
               ← Terug
+            </button>
+            <button
+              onClick={handlePrintTeacherSchedule}
+              disabled={isPrintingTeacherSchedule}
+              className="btn btn-primary disabled:opacity-50"
+            >
+              {isPrintingTeacherSchedule ? '⏳ Genereren...' : '🖨️ Print Leerkracht Rooster'}
             </button>
             <button onClick={onViewWeektaak} className="btn btn-primary">
               📋 Weektaak
@@ -320,6 +358,79 @@ function WeeklyScheduleView({
           </div>
         </div>
       </div>
+
+      {/* Hidden teacher schedule for printing */}
+      {isPrintingTeacherSchedule && (
+        <div
+          id="teacher-schedule-printable"
+          className="fixed left-[-9999px] top-0 bg-white p-8"
+          style={{ width: '297mm', minHeight: '210mm' }}
+        >
+          {/* Header */}
+          <div className="border-b-4 border-blue-600 pb-4 mb-6">
+            <h1 className="text-3xl font-bold text-gray-800">Leerkracht Rooster</h1>
+            <p className="text-lg text-gray-600 mt-2">
+              Week {schedule.weekNumber} • {format(new Date(schedule.weekStartDate), 'dd MMMM yyyy', { locale: nl })}
+            </p>
+          </div>
+
+          {/* Grid met kolommen per dag */}
+          <div className="grid grid-cols-5 gap-4">
+            {DAYS.map(day => {
+              const dayLessons = getLessonsByDay(day)
+              const teacher = masterSchedule.teachers?.[day] || ''
+
+              return (
+                <div key={day} className="border-2 rounded-lg overflow-hidden">
+                  {/* Dag header */}
+                  <div className={`${getDayColorClass(day)} px-3 py-3 text-center`}>
+                    <div className="font-bold text-lg">{getDayName(day)}</div>
+                    {teacher && (
+                      <div className="text-sm mt-1 opacity-90">{teacher}</div>
+                    )}
+                  </div>
+
+                  {/* Lessen voor deze dag */}
+                  <div className="p-3 space-y-2">
+                    {dayLessons.length > 0 ? (
+                      dayLessons.map((lesson) => {
+                        const slot = getMasterSlot(lesson.slotId)
+                        return (
+                          <div key={lesson.id} className="border-b border-gray-200 pb-2 last:border-b-0">
+                            <div className="text-xs text-gray-500 mb-1">
+                              {slot && `${slot.startTime}-${slot.endTime}`}
+                            </div>
+                            <div className="text-sm font-semibold text-gray-700">
+                              {lesson.subject}
+                            </div>
+                            <div className="text-xs text-gray-600">
+                              {lesson.lessonTitle}
+                            </div>
+                            {lesson.isBacklog && (
+                              <div className="text-xs text-orange-600 font-medium mt-1">
+                                Inhalen
+                              </div>
+                            )}
+                          </div>
+                        )
+                      })
+                    ) : (
+                      <p className="text-xs text-gray-400 italic text-center py-4">
+                        Geen lessen
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
+
+          {/* Footer */}
+          <div className="mt-8 text-center text-xs text-gray-500">
+            <p>Gegenereerd met Smart Weekly Planner • {format(new Date(), 'dd-MM-yyyy HH:mm', { locale: nl })}</p>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -9,6 +9,7 @@ import MasterScheduleEditor from './components/MasterScheduleEditor'
 import WeeklyScheduleView from './components/WeeklyScheduleView'
 import EvaluationWizard from './components/EvaluationWizard'
 import WeektaakView from './components/WeektaakView'
+import MethodiekBeheer from './components/MethodiekBeheer'
 
 // Import data and logic
 import mockCurriculumData from './data/mockCurriculum.json'
@@ -17,7 +18,7 @@ import { generateDemoData } from './utils/demoData'
 
 function App() {
   // Application state
-  const [currentView, setCurrentView] = useState('onboarding') // onboarding, dashboard, masterSchedule, weeklySchedule, evaluation, weektaak
+  const [currentView, setCurrentView] = useState('onboarding') // onboarding, dashboard, masterSchedule, weeklySchedule, evaluation, weektaak, methodiekBeheer
   const [settings, setSettings] = useState(null)
   const [masterSchedule, setMasterSchedule] = useState(null)
   const [teachingMethods, setTeachingMethods] = useState([])
@@ -45,6 +46,11 @@ function App() {
         setProgressTracker(data.progressTracker)
         setWeeklySchedules(data.weeklySchedules || [])
         setCurrentWeekId(data.currentWeekId)
+
+        // Load custom teaching methods if they exist
+        if (data.teachingMethods && data.teachingMethods.length > 0) {
+          setTeachingMethods(data.teachingMethods)
+        }
 
         // If we have data, skip onboarding
         if (data.settings && data.masterSchedule) {
@@ -100,6 +106,21 @@ function App() {
   const handleMasterScheduleUpdate = (updatedSchedule) => {
     setMasterSchedule(updatedSchedule)
     setCurrentView('dashboard')
+  }
+
+  // Handle teaching methods updates
+  const handleTeachingMethodsUpdate = (updatedMethods) => {
+    setTeachingMethods(updatedMethods)
+    // Save to localStorage
+    const dataToSave = {
+      settings,
+      masterSchedule,
+      progressTracker,
+      weeklySchedules,
+      currentWeekId,
+      teachingMethods: updatedMethods
+    }
+    localStorage.setItem('smartPlannerData', JSON.stringify(dataToSave))
   }
 
   // Handle weekly schedule updates
@@ -197,7 +218,15 @@ function App() {
             weeklySchedules={weeklySchedules}
             currentWeekId={currentWeekId}
             progressTracker={progressTracker}
-            onNavigate={(view) => setCurrentView(view)}
+            onNavigate={(view) => {
+              if (view === 'weektaak') {
+                setCurrentView('weektaak')
+              } else if (view === 'methodiekBeheer') {
+                setCurrentView('methodiekBeheer')
+              } else {
+                setCurrentView(view)
+              }
+            }}
             onEditMasterSchedule={() => setCurrentView('masterSchedule')}
             onViewWeeklySchedule={(weekId) => {
               setCurrentWeekId(weekId)
@@ -265,6 +294,14 @@ function App() {
             settings={settings}
             masterSchedule={masterSchedule}
             onBack={() => setCurrentView('weeklySchedule')}
+          />
+        )}
+
+        {currentView === 'methodiekBeheer' && (
+          <MethodiekBeheer
+            teachingMethods={teachingMethods}
+            onUpdateMethods={handleTeachingMethodsUpdate}
+            onBack={() => setCurrentView('dashboard')}
           />
         )}
       </main>
