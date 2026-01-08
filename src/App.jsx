@@ -249,6 +249,7 @@ function App() {
           <WeektaakView
             weeklySchedule={getCurrentWeeklySchedule()}
             settings={settings}
+            masterSchedule={masterSchedule}
             onBack={() => setCurrentView('weeklySchedule')}
           />
         )}
