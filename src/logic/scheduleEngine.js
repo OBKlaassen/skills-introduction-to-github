@@ -230,7 +230,7 @@ function getNextLessonsForSubject(progressTracker, teachingMethods, subject, cou
  * @param {Array} teachingMethods
  * @returns {Object|null} Lesson object with enriched data
  */
-function findLessonById(lessonId, teachingMethods) {
+export function findLessonById(lessonId, teachingMethods) {
   for (const method of teachingMethods) {
     for (const group of method.groups) {
       for (const block of group.blocks) {
@@ -256,7 +256,7 @@ function findLessonById(lessonId, teachingMethods) {
  * @param {Object} method
  * @returns {Array} All lessons with enriched data
  */
-function getAllLessonsFromMethod(method) {
+export function getAllLessonsFromMethod(method) {
   const allLessons = [];
 
   method.groups.forEach(group => {
