@@ -13,6 +13,7 @@ import WeektaakView from './components/WeektaakView'
 // Import data and logic
 import mockCurriculumData from './data/mockCurriculum.json'
 import { initializeProgressTracker } from './logic/scheduleEngine'
+import { generateDemoData } from './utils/demoData'
 
 function App() {
   // Application state
@@ -30,8 +31,11 @@ function App() {
     setTeachingMethods(mockCurriculumData.teachingMethods)
   }, [])
 
-  // Load saved data from localStorage
+  // Load saved data from localStorage or demo data
   useEffect(() => {
+    // Only run after teaching methods are loaded
+    if (teachingMethods.length === 0) return
+
     const savedData = localStorage.getItem('smartPlannerData')
     if (savedData) {
       try {
@@ -49,8 +53,18 @@ function App() {
       } catch (error) {
         console.error('Error loading saved data:', error)
       }
+    } else {
+      // No saved data - load demo scenario
+      console.log('Loading demo data...')
+      const demoData = generateDemoData()
+      setSettings(demoData.settings)
+      setMasterSchedule(demoData.masterSchedule)
+      setProgressTracker(demoData.progressTracker)
+      setWeeklySchedules(demoData.weeklySchedules)
+      setCurrentWeekId(demoData.currentWeekId)
+      setCurrentView('dashboard')
     }
-  }, [])
+  }, [teachingMethods])
 
   // Save data to localStorage whenever it changes
   useEffect(() => {
