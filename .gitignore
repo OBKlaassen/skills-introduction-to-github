@@ -35,3 +35,45 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Node.js #
+###########
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Build outputs #
+#################
+dist/
+build/
+.vite/
+*.local
+
+# Environment files #
+#####################
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE #
+#######
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing #
+###########
+coverage/
+.nyc_output/
+
+# Misc #
+########
+.cache/
+.temp/

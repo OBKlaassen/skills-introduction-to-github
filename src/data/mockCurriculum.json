@@ -1,0 +1,459 @@
+{
+  "teachingMethods": [
+    {
+      "id": "method-wig-groep4",
+      "name": "Wereld in Getallen",
+      "subject": "Rekenen",
+      "groups": [
+        {
+          "groupId": "groep-4",
+          "blocks": [
+            {
+              "blockId": "wig-g4-b1",
+              "blockNumber": 1,
+              "name": "Blok 1: Getallen tot 100",
+              "lessons": [
+                {
+                  "lessonId": "wig-g4-b1-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 1,
+                  "title": "Les 1: Tellen en ordenen tot 20",
+                  "description": "Tellen voorwerpen, getallenlijn gebruiken",
+                  "estimatedDuration": 45,
+                  "materials": ["Rekenblokjes", "Werkboek blz 4-5"]
+                },
+                {
+                  "lessonId": "wig-g4-b1-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 2,
+                  "title": "Les 2: Tellen tot 50",
+                  "description": "Structuren herkennen, groepjes van 10",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 6-7", "Telraam"]
+                },
+                {
+                  "lessonId": "wig-g4-b1-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 3,
+                  "title": "Les 3: Tellen tot 100",
+                  "description": "Getallen tot 100 lezen en schrijven",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 8-9"]
+                },
+                {
+                  "lessonId": "wig-g4-b1-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 4,
+                  "title": "Les 4: Optellen tot 20",
+                  "description": "Optellen met rekenblokjes en getallenlijn",
+                  "estimatedDuration": 45,
+                  "materials": ["Rekenblokjes", "Werkboek blz 10-11"]
+                },
+                {
+                  "lessonId": "wig-g4-b1-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 5,
+                  "title": "Les 5: Aftrekken tot 20",
+                  "description": "Aftrekken met rekenblokjes en getallenlijn",
+                  "estimatedDuration": 45,
+                  "materials": ["Rekenblokjes", "Werkboek blz 12-13"]
+                },
+                {
+                  "lessonId": "wig-g4-b1-l6",
+                  "lessonNumber": 6,
+                  "sequenceOrder": 6,
+                  "title": "Les 6: Toets Blok 1",
+                  "description": "Toets over getallen tot 100",
+                  "estimatedDuration": 45,
+                  "materials": ["Toetsboekje blz 2-3"]
+                }
+              ]
+            },
+            {
+              "blockId": "wig-g4-b2",
+              "blockNumber": 2,
+              "name": "Blok 2: Optellen en aftrekken",
+              "lessons": [
+                {
+                  "lessonId": "wig-g4-b2-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 7,
+                  "title": "Les 1: Optellen met sprongen",
+                  "description": "Splitsen in tientallen en enen",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 14-15"]
+                },
+                {
+                  "lessonId": "wig-g4-b2-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 8,
+                  "title": "Les 2: Aftrekken met sprongen",
+                  "description": "Terugtellen in stappen",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 16-17"]
+                },
+                {
+                  "lessonId": "wig-g4-b2-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 9,
+                  "title": "Les 3: Kolomsgewijs optellen",
+                  "description": "Tientallen en enen onder elkaar",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 18-19"]
+                },
+                {
+                  "lessonId": "wig-g4-b2-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 10,
+                  "title": "Les 4: Kolomsgewijs aftrekken",
+                  "description": "Aftrekken met getallen onder elkaar",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 20-21"]
+                },
+                {
+                  "lessonId": "wig-g4-b2-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 11,
+                  "title": "Les 5: Gemengde opgaven",
+                  "description": "Optellen en aftrekken door elkaar",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 22-23"]
+                },
+                {
+                  "lessonId": "wig-g4-b2-l6",
+                  "lessonNumber": 6,
+                  "sequenceOrder": 12,
+                  "title": "Les 6: Toets Blok 2",
+                  "description": "Toets optellen en aftrekken",
+                  "estimatedDuration": 45,
+                  "materials": ["Toetsboekje blz 4-5"]
+                }
+              ]
+            },
+            {
+              "blockId": "wig-g4-b3",
+              "blockNumber": 3,
+              "name": "Blok 3: Tafels van vermenigvuldiging",
+              "lessons": [
+                {
+                  "lessonId": "wig-g4-b3-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 13,
+                  "title": "Les 1: Tafel van 2",
+                  "description": "Introductie vermenigvuldigen, groepjes van 2",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 24-25", "Tafelkaarten"]
+                },
+                {
+                  "lessonId": "wig-g4-b3-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 14,
+                  "title": "Les 2: Tafel van 5",
+                  "description": "Groepjes van 5, tellen met sprongen",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 26-27", "Tafelkaarten"]
+                },
+                {
+                  "lessonId": "wig-g4-b3-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 15,
+                  "title": "Les 3: Tafel van 10",
+                  "description": "Groepjes van 10, tellen in tienen",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 28-29", "Tafelkaarten"]
+                },
+                {
+                  "lessonId": "wig-g4-b3-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 16,
+                  "title": "Les 4: Gemengde tafels 2, 5 en 10",
+                  "description": "Oefenen met tafels door elkaar",
+                  "estimatedDuration": 45,
+                  "materials": ["Werkboek blz 30-31"]
+                },
+                {
+                  "lessonId": "wig-g4-b3-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 17,
+                  "title": "Les 5: Toets Blok 3",
+                  "description": "Toets tafels 2, 5 en 10",
+                  "estimatedDuration": 45,
+                  "materials": ["Toetsboekje blz 6-7"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "method-staal-groep4",
+      "name": "Staal Spelling",
+      "subject": "Spelling",
+      "groups": [
+        {
+          "groupId": "groep-4",
+          "blocks": [
+            {
+              "blockId": "staal-g4-b1",
+              "blockNumber": 1,
+              "name": "Blok 1: Klanken en letters",
+              "lessons": [
+                {
+                  "lessonId": "staal-g4-b1-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 1,
+                  "title": "Les 1: Korte en lange klanken",
+                  "description": "Onderscheid maken tussen korte en lange klinkers",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 4-5", "Woordkaarten"]
+                },
+                {
+                  "lessonId": "staal-g4-b1-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 2,
+                  "title": "Les 2: Meervoud met -en",
+                  "description": "Meervoud maken door -en toe te voegen",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 6-7"]
+                },
+                {
+                  "lessonId": "staal-g4-b1-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 3,
+                  "title": "Les 3: Verdubbelen",
+                  "description": "Wanneer verdubbel je de eindmedeklinker?",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 8-9"]
+                },
+                {
+                  "lessonId": "staal-g4-b1-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 4,
+                  "title": "Les 4: De f en de v",
+                  "description": "Verschil tussen f en v in woorden",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 10-11"]
+                },
+                {
+                  "lessonId": "staal-g4-b1-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 5,
+                  "title": "Les 5: Herhaling Blok 1",
+                  "description": "Oefenen met alle onderwerpen uit blok 1",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 12-13"]
+                },
+                {
+                  "lessonId": "staal-g4-b1-l6",
+                  "lessonNumber": 6,
+                  "sequenceOrder": 6,
+                  "title": "Les 6: Dictee Blok 1",
+                  "description": "Dictee over onderwerpen uit blok 1",
+                  "estimatedDuration": 30,
+                  "materials": ["Dicteeblad"]
+                }
+              ]
+            },
+            {
+              "blockId": "staal-g4-b2",
+              "blockNumber": 2,
+              "name": "Blok 2: Werkwoordspelling",
+              "lessons": [
+                {
+                  "lessonId": "staal-g4-b2-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 7,
+                  "title": "Les 1: Tegenwoordige tijd -t",
+                  "description": "Wanneer schrijf je -t aan het eind?",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 14-15"]
+                },
+                {
+                  "lessonId": "staal-g4-b2-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 8,
+                  "title": "Les 2: Verleden tijd -te/-de",
+                  "description": "Kies tussen -te en -de",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 16-17"]
+                },
+                {
+                  "lessonId": "staal-g4-b2-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 9,
+                  "title": "Les 3: Verleden tijd -ten/-den",
+                  "description": "Meervoud verleden tijd",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 18-19"]
+                },
+                {
+                  "lessonId": "staal-g4-b2-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 10,
+                  "title": "Les 4: Voltooid deelwoord ge-",
+                  "description": "Wanneer gebruik je ge- aan het begin?",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 20-21"]
+                },
+                {
+                  "lessonId": "staal-g4-b2-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 11,
+                  "title": "Les 5: Herhaling Blok 2",
+                  "description": "Oefenen met werkwoordspelling",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 22-23"]
+                },
+                {
+                  "lessonId": "staal-g4-b2-l6",
+                  "lessonNumber": 6,
+                  "sequenceOrder": 12,
+                  "title": "Les 6: Dictee Blok 2",
+                  "description": "Dictee werkwoordspelling",
+                  "estimatedDuration": 30,
+                  "materials": ["Dicteeblad"]
+                }
+              ]
+            },
+            {
+              "blockId": "staal-g4-b3",
+              "blockNumber": 3,
+              "name": "Blok 3: Moeilijke woorden",
+              "lessons": [
+                {
+                  "lessonId": "staal-g4-b3-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 13,
+                  "title": "Les 1: ei of ij",
+                  "description": "Kies tussen ei en ij in woorden",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 24-25"]
+                },
+                {
+                  "lessonId": "staal-g4-b3-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 14,
+                  "title": "Les 2: au of ou",
+                  "description": "Kies tussen au en ou in woorden",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 26-27"]
+                },
+                {
+                  "lessonId": "staal-g4-b3-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 15,
+                  "title": "Les 3: cht of gt",
+                  "description": "Verschil tussen cht en gt",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 28-29"]
+                },
+                {
+                  "lessonId": "staal-g4-b3-l4",
+                  "lessonNumber": 4,
+                  "sequenceOrder": 16,
+                  "title": "Les 4: Herhaling Blok 3",
+                  "description": "Oefenen met moeilijke woorden",
+                  "estimatedDuration": 30,
+                  "materials": ["Spellingschrift blz 30-31"]
+                },
+                {
+                  "lessonId": "staal-g4-b3-l5",
+                  "lessonNumber": 5,
+                  "sequenceOrder": 17,
+                  "title": "Les 5: Dictee Blok 3",
+                  "description": "Dictee moeilijke woorden",
+                  "estimatedDuration": 30,
+                  "materials": ["Dicteeblad"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "method-veilig-leren-lezen-groep4",
+      "name": "Veilig leren lezen - Kim versie",
+      "subject": "Technisch lezen",
+      "groups": [
+        {
+          "groupId": "groep-4",
+          "blocks": [
+            {
+              "blockId": "vll-g4-b1",
+              "blockNumber": 1,
+              "name": "Blok 1: Woordenschat uitbreiding",
+              "lessons": [
+                {
+                  "lessonId": "vll-g4-b1-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 1,
+                  "title": "Les 1: Thema De School",
+                  "description": "Woordenschat over school en klaslokaal",
+                  "estimatedDuration": 30,
+                  "materials": ["Leesboek blz 4-7"]
+                },
+                {
+                  "lessonId": "vll-g4-b1-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 2,
+                  "title": "Les 2: Thema Huisdieren",
+                  "description": "Verhalen en woorden over huisdieren",
+                  "estimatedDuration": 30,
+                  "materials": ["Leesboek blz 8-11"]
+                },
+                {
+                  "lessonId": "vll-g4-b1-l3",
+                  "lessonNumber": 3,
+                  "sequenceOrder": 3,
+                  "title": "Les 3: Thema Sport",
+                  "description": "Lezen over verschillende sporten",
+                  "estimatedDuration": 30,
+                  "materials": ["Leesboek blz 12-15"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "method-estafette-groep4",
+      "name": "Estafette",
+      "subject": "Begrijpend lezen",
+      "groups": [
+        {
+          "groupId": "groep-4",
+          "blocks": [
+            {
+              "blockId": "est-g4-b1",
+              "blockNumber": 1,
+              "name": "Blok 1: Strategie training",
+              "lessons": [
+                {
+                  "lessonId": "est-g4-b1-l1",
+                  "lessonNumber": 1,
+                  "sequenceOrder": 1,
+                  "title": "Les 1: Voorspellen",
+                  "description": "Leren voorspellen wat er in een tekst staat",
+                  "estimatedDuration": 45,
+                  "materials": ["Leesboek 4A blz 6-9"]
+                },
+                {
+                  "lessonId": "est-g4-b1-l2",
+                  "lessonNumber": 2,
+                  "sequenceOrder": 2,
+                  "title": "Les 2: Verbanden leggen",
+                  "description": "Verbanden in de tekst herkennen",
+                  "estimatedDuration": 45,
+                  "materials": ["Leesboek 4A blz 10-13"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
